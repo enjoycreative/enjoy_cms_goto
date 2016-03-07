@@ -23,13 +23,13 @@ Or install it yourself as:
 Add in config/routes.rb
 
 ```ruby
-enjoy_cms_goto_routes
+  enjoy_cms_goto_routes
 ```
 
 and in config/application.rb
 
 ```ruby
-  config.middleware.use Enjoy::Goto::Middleware, {excluded_hosts: []}
+    config.middleware.use Enjoy::Goto::Middleware, {excluded_hosts: []}
 ```
 
 Also you can specify excluded_hosts. This are hosts you don't want go through this system.
