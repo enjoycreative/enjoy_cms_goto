@@ -29,7 +29,7 @@ Add in config/routes.rb
 and in config/application.rb
 
 ```ruby
-    config.middleware.use Enjoy::Goto::Middleware, {excluded_hosts: []}
+  config.middleware.use Enjoy::Goto::Middleware, {excluded_hosts: []}
 ```
 
 Also you can specify excluded_hosts. This are hosts you don't want go through this system.
