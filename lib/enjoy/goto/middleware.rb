@@ -21,8 +21,6 @@ module Enjoy::Goto
           if _href =~ /^(https?:)?\/\//i
             begin
               _host = Addressable::URI.parse(_href).host
-              puts _href
-              puts _host
               unless @excluded_hosts.include?(_host)
                 a['href'] = Rails.application.routes.url_helpers.enjoy_goto_path(url: _href)
               end
