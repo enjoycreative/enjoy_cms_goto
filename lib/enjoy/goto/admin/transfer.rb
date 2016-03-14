@@ -5,6 +5,7 @@ module Enjoy::Goto
         Proc.new {
 
           field :creator do
+            filterable true
             pretty_value do
               unless bindings[:object].creator.blank?
                 route = (bindings[:view] || bindings[:controller])
@@ -17,6 +18,7 @@ module Enjoy::Goto
           end
           field :created_at
           field :url do
+            searchable true
             pretty_value do
               unless bindings[:object].url.blank?
                 route = (bindings[:view] || bindings[:controller])
@@ -27,6 +29,7 @@ module Enjoy::Goto
           end
           field :recieved_url
           field :host do
+            searchable true
             pretty_value do
               unless bindings[:object].host.blank?
                 route = (bindings[:view] || bindings[:controller])
@@ -36,6 +39,7 @@ module Enjoy::Goto
             end
           end
           field :referer do
+            searchable true
             pretty_value do
               unless bindings[:object].referer.blank?
                 route = (bindings[:view] || bindings[:controller])
@@ -44,7 +48,9 @@ module Enjoy::Goto
               end
             end
           end
-          field :source_ip
+          field :source_ip do
+            searchable true
+          end
 
           if block_given?
             yield self

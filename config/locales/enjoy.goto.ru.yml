@@ -5,7 +5,7 @@ ru:
     attributes:
       enjoy/goto/transfer:
         url: URL перехода
-        received_url: Принятый URL
+        recieved_url: Принятый URL
         host: Хост перехода
         referer: Страница, с которой перешли
         source_ip: IP пользователя

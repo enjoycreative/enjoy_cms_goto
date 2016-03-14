@@ -15,20 +15,24 @@ module Enjoy::Goto
       status, headers, body = @app.call(env)
 
       if headers['Content-Type'].to_s.include?('text/html')
-        doc = Nokogiri::HTML.parse(body.body)
-        doc.css("a[href]").each do |a|
-          _href = a['href']
-          if _href =~ /^(https?:)?\/\//i
-            begin
-              _host = Addressable::URI.parse(_href).host
-              unless @excluded_hosts.include?(_host)
-                a['href'] = Rails.application.routes.url_helpers.enjoy_goto_path(url: _href)
+        begin
+          doc = Nokogiri::HTML.parse(body.body)
+          doc.css("a[href]").each do |a|
+            _href = a['href']
+            if _href =~ /^(https?:)?\/\//i
+              begin
+                _host = Addressable::URI.parse(_href).host
+                unless @excluded_hosts.include?(_host)
+                  a['href'] = Rails.application.routes.url_helpers.enjoy_goto_path(url: _href)
+                  a['target'] = '_blank' if a['target'].blank?
+                end
+              rescue
               end
-            rescue
             end
           end
+          return [status, headers, [doc.to_html]]
+        rescue
         end
-        return [status, headers, [doc.to_html]]
       end
 
       [status, headers, body]

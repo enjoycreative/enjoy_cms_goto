@@ -12,6 +12,7 @@ module Enjoy::Goto
         @transfer.url = url.to_s
         @transfer.host = url.host.to_s if url
         @transfer.referer = referer.to_s
+        @transfer.source_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
         @transfer.save
 
         redirect_to @transfer.url, code: 303
