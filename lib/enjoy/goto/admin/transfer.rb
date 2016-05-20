@@ -3,6 +3,11 @@ module Enjoy::Goto
     module Transfer
       def self.config(fields = {})
         Proc.new {
+          if defined?(Enjoy::Feedback)
+            navigation_label I18n.t('enjoy.feedback')
+          else
+            navigation_label I18n.t('enjoy.goto')
+          end
 
           field :creator do
             filterable true

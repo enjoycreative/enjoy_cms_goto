@@ -4,10 +4,10 @@ module Enjoy::Goto
       extend ActiveSupport::Concern
 
       def index
-        url = Addressable::URI.parse(params[:url]) rescue nil
+        url = Addressable::URI.heuristic_parse(params[:url]) rescue nil
         referer = (request.referer ? Addressable::URI.parse(request.referer) : nil) rescue nil
 
-        @transfer = Transfer.new
+        @transfer = transfer_class.new
         @transfer.recieved_url = params[:url]
         @transfer.url = url.to_s
         @transfer.host = url.host.to_s if url
@@ -16,6 +16,10 @@ module Enjoy::Goto
         @transfer.save
 
         redirect_to @transfer.url, code: 303
+      end
+
+      def transfer_class
+        Enjoy::Goto::Transfer
       end
 
     end

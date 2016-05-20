@@ -2,7 +2,7 @@ require "enjoy/goto/version"
 
 require "enjoy/goto/routes"
 
-require 'enjoy_cms'
+# require 'enjoy_cms'
 
 require 'mongoid'
 require 'mongoid_userstamp'
@@ -15,7 +15,7 @@ module Enjoy
   module Goto
     class << self
       def orm
-        :mongoid
+        :mongoid #Enjoy.orm
       end
       def mongoid?
         Enjoy::Goto.orm == :mongoid

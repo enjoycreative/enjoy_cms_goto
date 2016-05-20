@@ -1,5 +1,7 @@
 ru:
-  mongoid:
+  enjoy:
+    goto: 'Переходы с сайта'
+  mongoid: &mongoid
     models:
       enjoy/goto/transfer: "Переходы с сайта"
     attributes:
@@ -10,3 +12,6 @@ ru:
         referer: Страница, с которой перешли
         source_ip: IP пользователя
         creator: Пользователь
+
+  activerecord:
+    <<: *mongoid
